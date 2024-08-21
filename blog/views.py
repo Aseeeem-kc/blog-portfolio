@@ -34,5 +34,7 @@ def blog_detail(request, pk):
             return HttpResponseRedirect(request.path_info)
     comments = Comment.objects.filter(post=post)
     context = {"post": post, "comments": comments, "form": form}
+    print("yha samma bhayo hai")
+    print(context)
 
     return render(request, "blog/detail.html", context)

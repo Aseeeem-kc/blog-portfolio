@@ -1,39 +1,49 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-{% block page_title %}
-    <h2>{{ post.title }}</h2>
-{% endblock page_title %}
-
-{% block page_content %}
-    <small>
-        {{ post.created_on.date }} | Categories:
-        {% for category in post.categories.all %}
-            <a href="{% url 'blog_category' category.name %}">
-                {{ category.name }}
-            </a>
-        {% endfor %}
-    </small>
-    <p>{{ post.body | linebreaks }}</p>
-
-    <h3>Leave a comment:</h3>
-    <form method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            {{ form.author }}
+{% block content %}
+    <div class="max-w-4xl mx-auto py-6 mt-8">
+        <h2 class="text-center text-3xl font-bold text-teal-400">{{ post.title }}</h2>
+        <small class="block text-gray-400 text-center mt-3">
+            {{ post.created_on.date }} | Categories:
+            {% for category in post.categories.all %}
+                <a href="{% url 'blog_category' category.name %}" class="text-teal-400 hover:underline">
+                    {{ category.name }}
+                </a>
+            {% endfor %}
+        </small>
+        
+        <div class="mt-8 text-lg text-gray-300">
+            {{ post.body | linebreaks }}
         </div>
-        <div class="form-group">
-            {{ form.body }}
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
 
-    <h3>Comments:</h3>
-    {% for comment in comments %}
-        <p>
-            On {{ comment.created_on.date }} <b>{{ comment.author }}</b> wrote:
-        </p>
-        <p>
-            {{ comment.body | linebreaks }}
-        </p>
-    {% endfor %}
-{% endblock page_content %}
+        <div class="mt-8">
+            <h3 class="text-2xl font-semibold">Leave a comment:</h3>
+            <form method="post" class="mt-4">
+                {% csrf_token %}
+                <div class="mb-4">
+                    {{ form.author }}
+                </div>
+                <div class="mb-4">
+                    {{ form.body }}
+                </div>
+                <button type="submit" class="btn btn-teal-400 hover:bg-teal-500">Submit</button>
+            </form>
+        </div>
+
+        <div class="mt-8">
+            <h3 class="text-2xl font-semibold">Comments:</h3>
+            {% for comment in comments %}
+                <div class="mt-4 border-b border-gray-700 pb-4">
+                    <p class="text-sm text-gray-400">
+                        On {{ comment.created_on.date }} <b>{{ comment.author }}</b> wrote:
+                    </p>
+                    <p class="mt-2 text-gray-300">
+                        {{ comment.body | linebreaks }}
+                    </p>
+                </div>
+            {% empty %}
+                <p class="mt-4 text-gray-400">No comments yet. Be the first to comment!</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

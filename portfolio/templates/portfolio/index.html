@@ -2,23 +2,34 @@
 
 {% block title %}Home{% endblock %}
 
+
 {% block content %}
     <!-- Hero Section -->
     <section class="flex flex-col items-center text-center mt-12">
         <p class="mt-4 text-gray-400 max-w-2xl">Counseller &middot;
-            Educator &middot; Instructor</p>
+            Educator &middot; Instructor</p><br>
         <h1 class="text-4xl font-bold">Empowering students for<br> success in canada</h1>
         
         
         <!-- Social Icons -->
-        <div class="flex space-x-6 mt-6">
-            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-x-twitter"></i></a>
-            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-github"></i></a>
-            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin"></i></a>
+        <div class="flex space-x-6 mt-14">
+            <a href="#" class="text-gray-400 hover:text-white">
+                <i class="fab fa-twitter fa-2x"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+                <i class="fab fa-instagram fa-2x"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+                <i class="fab fa-github fa-2x"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-white">
+                <i class="fab fa-linkedin fa-2x"></i>
+            </a>
+            
         </div>
     </section>
 
+    {% if gallery %}
     <!-- Gallery Section -->
     <section class="py-8">
         <div class="container mx-auto">
@@ -41,25 +52,33 @@
             </div>
         </div>
     </section>
+    {% endif %}
+
+    
 
     <div class="max-w-7xl mx-auto py-8 space-y-6">
         <div class="flex space-x-8">
             <!-- Latest Blogs Section -->
             <div class="w-2/3 space-y-6">
-                <h2 class="text-2xl font-bold text-gray-100">Latest Blogs</h2>
+                <h2 class="text-2xl font-bold text-gray-100">Latest Blog</h2>
             
                 <!-- Blog Post 1 -->
                 <div class="bg-gray-800 p-6 rounded-lg shadow-md">
-                    <div class="text-sm text-gray-400">
-                        <span>|</span> September 5, 2022
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-semibold">
+                            <a href="{% url 'blog_detail' latest_blog.pk %}" class="text-teal-400 hover:underline">{{ latest_blog.title }}</a>
+                        </h3>
+                        <small class="text-gray-500">
+                            {{ latest_blog.created_on.date }} | Categories:
+                            {% for category in latest_blog.categories.all %}
+                                <a href="{% url 'blog_category' category.name %}" class="text-teal-400 hover:underline">
+                                    {{ category.name }}
+                                </a>{% if not forloop.last %}, {% endif %}
+                            {% endfor %}
+                        </small>
+                        <p class="text-gray-300 mt-4">{{ latest_blog.body | slice:":400" }}...</p>
                     </div>
-                    <h3 class="mt-2 text-xl font-semibold text-gray-100">
-                        Crafting a design system for a multiplanetary future
-                    </h3>
-                    <p class="mt-2 text-gray-400">
-                        Most companies try to stay ahead of the curve when it comes to visual design, but for Planetaria we needed to create a brand that would still inspire us 100 years from now when humanity has spread across our entire solar system.
-                    </p>
-                    <a href="#" class="mt-4 inline-block text-teal-400 hover:text-teal-300 font-semibold">
+                    <a href="{% url 'blog_detail' latest_blog.pk %}" class="mt-4 inline-block text-teal-400 hover:text-teal-300 font-semibold">
                         Read article &rarr;
                     </a>
                     <a href="{% url 'blog_index' %}" class="ml-8 mt-4 inline-block text-teal-400 hover:text-teal-300 font-semibold">

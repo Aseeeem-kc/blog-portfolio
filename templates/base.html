@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Portfolio{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
 </head>
 <body class="bg-gray-900 text-gray-100">
 
@@ -18,7 +20,7 @@
         <!-- Center: Navigation Links -->
         <div class="flex space-x-6 bg-gray-800 px-6 py-2 rounded-full">
             <a href="{% url 'index' %}" class="text-teal-400">Home</a>
-            <a href="" class="text-gray-300 hover:text-teal-400">About</a>
+            <a href="{% url 'about' %}" class="text-gray-300 hover:text-teal-400">About</a>
             <a href="{% url 'blog_index' %}" class="text-gray-300 hover:text-teal-400">Blogs</a>
             <a href="{% url 'expertise' %}" class="text-gray-300 hover:text-teal-400">Expertise</a>
         </div>
@@ -37,6 +39,10 @@
     <div class="container mx-auto">
         {% block content %}
         {% endblock %}
+    </div>
+
+    <div class="text-center mb-4 text-gray-300">
+        <p>copyright &copy; prafulla parajuli </p>
     </div>
 
 </body>
