@@ -6,3 +6,9 @@ class Expertise(models.Model):
 
     def __str__(self):
         return self.title
+
+class Gallery(models.Model):
+    image = models.ImageField() 
+
+    def __str__(self):
+        return "Image Gallery"

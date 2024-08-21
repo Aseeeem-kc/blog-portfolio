@@ -1,22 +1,26 @@
 {% extends "base.html" %}
 
-{% block page_title %}
-    <h2>Blog Posts</h2>
-{% endblock page_title %}
+{% block title %}Blog Posts{% endblock %}
 
-{% block page_content %}
-    {% block posts %}
+{% block content %}
+<section class="mx-auto py-8" style="max-width: 800px;">
+        <h2 class="text-3xl font-bold text-center mb-8">Blog Posts</h2>
+
         {% for post in posts %}
-            <h3><a href="{% url 'blog_detail' post.pk %}">{{ post.title }}</a></h3>
-            <small>
-                {{ post.created_on.date }} | Categories:
-                {% for category in post.categories.all %}
-                    <a href="{% url 'blog_category' category.name %}">
-                        {{ category.name }}
-                    </a>
-                {% endfor %}
-            </small>
-            <p>{{ post.body | slice:":400" }}...</p>
+            <div class="mb-8">
+                <h3 class="text-2xl font-semibold">
+                    <a href="{% url 'blog_detail' post.pk %}" class="text-teal-400 hover:underline">{{ post.title }}</a>
+                </h3>
+                <small class="text-gray-500">
+                    {{ post.created_on.date }} | Categories:
+                    {% for category in post.categories.all %}
+                        <a href="{% url 'blog_category' category.name %}" class="text-teal-400 hover:underline">
+                            {{ category.name }}
+                        </a>{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </small>
+                <p class="text-gray-300 mt-4">{{ post.body | slice:":400" }}...</p>
+            </div>
         {% endfor %}
-    {% endblock posts %}
-{% endblock page_content %}
+    </section>
+{% endblock %}

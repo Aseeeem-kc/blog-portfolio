@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>My Personal Blog</title>
-    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Portfolio{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-<h1>Hello, Im Prafulla</h1>
-<a href="{% url "index" %}">Home</a>
-<hr>
-{% block page_title %}{% endblock page_title %}
-{% block page_content %}{% endblock page_content %}
+<body class="bg-gray-900 text-gray-100">
+
+    <!-- Navbar -->
+    <nav class="flex items-center justify-between max-w-4xl mx-auto py-4 px-6">
+        <!-- Left: Profile Image -->
+        <div>
+            <img src="your-profile-image-path.jpg" alt="Profile Image" class="h-10 w-10 rounded-full border-2 border-gray-700">
+        </div>
+
+        <!-- Center: Navigation Links -->
+        <div class="flex space-x-6 bg-gray-800 px-6 py-2 rounded-full">
+            <a href="{% url 'index' %}" class="text-teal-400">Home</a>
+            <a href="" class="text-gray-300 hover:text-teal-400">About</a>
+            <a href="{% url 'blog_index' %}" class="text-gray-300 hover:text-teal-400">Blogs</a>
+            <a href="{% url 'expertise' %}" class="text-gray-300 hover:text-teal-400">Expertise</a>
+        </div>
+
+        <!-- Right: Dark Mode Toggle -->
+        <div>
+            <button class="flex items-center justify-center h-10 w-10 rounded-full bg-gray-800 hover:bg-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-10H21m-16.66 0H3m14.14-5.12l.71-.71m-10.06 0l-.71.71m12.36 10.06l.71.71m-12.36 0l-.71-.71M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Content Block -->
+    <div class="container mx-auto">
+        {% block content %}
+        {% endblock %}
+    </div>
+
 </body>
 </html>

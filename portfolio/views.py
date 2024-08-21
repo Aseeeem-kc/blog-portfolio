@@ -8,5 +8,5 @@ def index(request):
 def expertise(request):
     expertises = Expertise.objects.all()
     return render(request, 'portfolio/expertise.html', {
-        'expertise': expertise,
+        'expertises': expertises,
     })
