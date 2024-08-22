@@ -19,7 +19,9 @@
                         </a>{% if not forloop.last %}, {% endif %}
                     {% endfor %}
                 </small>
-                <p class="text-gray-300 mt-4">{{ post.body | slice:":400" }}...</p>
+
+                <p class="text-gray-300 mt-4">{{ post.summary }}...</p>
+                
             </div>
         {% endfor %}
     </section>

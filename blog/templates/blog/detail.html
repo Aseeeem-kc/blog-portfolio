@@ -12,11 +12,12 @@
             {% endfor %}
         </small>
         
-        <div class="mt-8 text-lg text-gray-300">
-            {{ post.body | linebreaks }}
+        <div class="rich-text-content mt-8 text-lg">
+            {{ post.body | safe }}
         </div>
+        
 
-        <div class="mt-8">
+        {% comment %} <div class="mt-8">
             <h3 class="text-2xl font-semibold">Leave a comment:</h3>
             <form method="post" class="mt-4">
                 {% csrf_token %}
@@ -28,9 +29,9 @@
                 </div>
                 <button type="submit" class="btn btn-teal-400 hover:bg-teal-500">Submit</button>
             </form>
-        </div>
+        </div> {% endcomment %}
 
-        <div class="mt-8">
+        {% comment %} <div class="mt-8">
             <h3 class="text-2xl font-semibold">Comments:</h3>
             {% for comment in comments %}
                 <div class="mt-4 border-b border-gray-700 pb-4">
@@ -44,6 +45,6 @@
             {% empty %}
                 <p class="mt-4 text-gray-400">No comments yet. Be the first to comment!</p>
             {% endfor %}
-        </div>
+        </div> {% endcomment %}
     </div>
 {% endblock %}
