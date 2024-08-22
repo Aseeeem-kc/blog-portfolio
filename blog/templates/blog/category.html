@@ -19,8 +19,15 @@
                         </a>{% if not forloop.last %}, {% endif %}
                     {% endfor %}
                 </small>
-                <p class="text-gray-300 mt-4">{{ post.body | slice:":400" }}...</p>
+                <p class="text-gray-300 mt-4">{{ post.summary | slice:":225" }}...</p>
             </div>
         {% endfor %}
+        <div class="bg-gray-800 p-2 rounded-lg shadow-md ">
+        
+            <a href="{% url 'blog_index' %}" class="ml-8 inline-block text-teal-400 hover:text-teal-300 font-semibold">
+                Check out All the Blogs &rarr;
+            </a>
+        </div>
     </section>
+    
 {% endblock %}

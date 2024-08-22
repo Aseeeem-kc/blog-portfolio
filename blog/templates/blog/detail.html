@@ -15,6 +15,13 @@
         <div class="rich-text-content mt-8 text-lg">
             {{ post.body | safe }}
         </div>
+
+        <div class="bg-gray-800 p-2 rounded-lg shadow-md mt-4 ">
+        
+            <a href="{% url 'blog_index' %}" class="ml-8 inline-block text-teal-400 hover:text-teal-300 font-semibold">
+                Check out All the Blogs &rarr;
+            </a>
+        </div>
         
 
         {% comment %} <div class="mt-8">
@@ -47,4 +54,5 @@
             {% endfor %}
         </div> {% endcomment %}
     </div>
+    
 {% endblock %}
