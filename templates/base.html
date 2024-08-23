@@ -11,7 +11,7 @@
         .rich-text-content * {
             color: white !important;
         }
-        
+
         /* Tooltip styles */
         .tooltip-container {
             position: relative;
@@ -20,7 +20,6 @@
 
         .tooltip-text {
             visibility: hidden;
-            background-color: #111678;
             color: #fff;
             text-align: center;
             border-radius: 4px;
@@ -38,19 +37,36 @@
             visibility: visible;
             opacity: 1;
         }
+
+        @media (max-width: 500px) {
+            .download-cv-btn,
+            .profile-pic-div {
+                display: none;
+            }
+
+            nav {
+                justify-content: center; /* Center the navbar contents */
+            }
+        }
+        @media (max-width: 500px) {
+            .downdload-cv-md: {
+                    display: hidden;
+            }
+        }
     </style>
 </head>
 <body class="dark-mode bg-gray-900 text-gray-100" id="body">
 
     <!-- Navbar -->
-    <nav class="flex items-center justify-between max-w-4xl mx-auto mt-4 py-4 px-6">
-        <!-- Left: Profile Image (Hidden on small screens) -->
-        <div class="">
+    <nav class=" flex items-center justify-between max-w-4xl mx-auto mt-4 py-4 px-6 ">
+        
+        <!-- Profile Picture -->
+        <div class="profile-pic-div ml-12">
             <img src="{{ about.image.url }}" class="h-10 w-10 rounded-full border-2 border-gray-700">
         </div>
 
         <!-- Center: Navigation Links -->
-        <div class=" flex space-x-6 bg-gray-700 dark:bg-gray-800 px-6 py-2 rounded-full">
+        <div class="flex space-x-6 bg-gray-700 dark:bg-gray-800 px-6 py-2 rounded-full">
             <a href="{% url 'index' %}" class="text-teal-400 dark:text-teal-300">Home</a>
             <a href="{% url 'about' %}" class="text-gray-300 dark:text-gray-400 hover:text-teal-400 dark:hover:text-teal-300">About</a>
             <a href="{% url 'blog_index' %}" class="text-gray-300 dark:text-gray-400 hover:text-teal-400 dark:hover:text-teal-300">Blogs</a>
@@ -58,7 +74,7 @@
         </div>
 
         <!-- Right: Download Resume Button -->
-        <div class="tooltip-container">
+        <div class="tooltip-container download-cv-btn">
             <a href="{% static 'path/to/your_resume.pdf' %}" download class="flex items-center justify-center h-10 w-10 rounded-full bg-gray-700 hover:bg-gray-600">
                 <i class="fas fa-download text-gray-300 dark:text-gray-400"></i>
             </a>
