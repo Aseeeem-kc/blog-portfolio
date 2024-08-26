@@ -38,19 +38,23 @@
             opacity: 1;
         }
 
+        /* Responsive adjustments */
         @media (max-width: 500px) {
-            .download-cv-btn,
-            .profile-pic-div {
-                display: none;
+            .profile-pic-div,
+            .download-cv-btn {
+                display: none; /* Hide profile pic and CV download button on small screens */
             }
 
             nav {
-                justify-content: center; /* Center the navbar contents */
+                justify-content: center; /* Center the navbar content */
             }
         }
-        @media (max-width: 500px) {
-            .downdload-cv-md: {
-                    display: hidden;
+
+        /* Additional styles for very small screens */
+        @media (max-width: 350px) {
+            .flex-grow {
+                justify-content: center; /* Center the navbar container */
+                display: flex;
             }
         }
     </style>
@@ -58,7 +62,7 @@
 <body class="dark-mode bg-gray-900 text-gray-100" id="body">
 
     <!-- Navbar -->
-    <nav class=" flex items-center justify-between max-w-4xl mx-auto mt-4 py-4 px-6 ">
+    <nav class="flex items-center justify-between max-w-4xl mx-auto mt-4 py-4 px-6">
         
         <!-- Profile Picture -->
         <div class="profile-pic-div ml-12">
@@ -66,15 +70,17 @@
         </div>
 
         <!-- Center: Navigation Links -->
-        <div class="flex space-x-6 bg-gray-700 dark:bg-gray-800 px-6 py-2 rounded-full">
-            <a href="{% url 'index' %}" class="text-teal-400 dark:text-teal-300">Home</a>
-            <a href="{% url 'about' %}" class="text-gray-300 dark:text-gray-400 hover:text-teal-400 dark:hover:text-teal-300">About</a>
-            <a href="{% url 'blog_index' %}" class="text-gray-300 dark:text-gray-400 hover:text-teal-400 dark:hover:text-teal-300">Blogs</a>
-            <a href="{% url 'expertise' %}" class="text-gray-300 dark:text-gray-400 hover:text-teal-400 dark:hover:text-teal-300">Expertise</a>
+        <div class="flex-grow flex justify-center">
+            <div class="flex space-x-6 bg-gray-700 px-6 py-2 rounded-full">
+                <a href="{% url 'index' %}" class="text-teal-400 dark:text-teal-300">Home</a>
+                <a href="{% url 'about' %}" class="text-gray-300 dark:text-gray-400 hover:text-teal-400 dark:hover:text-teal-300">About</a>
+                <a href="{% url 'blog_index' %}" class="text-gray-300 dark:text-gray-400 hover:text-teal-400 dark:hover:text-teal-300">Blogs</a>
+                <a href="{% url 'expertise' %}" class="text-gray-300 dark:text-gray-400 hover:text-teal-400 dark:hover:text-teal-300">Expertise</a>
+            </div>
         </div>
 
         <!-- Right: Download Resume Button -->
-        <div class="tooltip-container download-cv-btn">
+        <div class="tooltip-container download-cv-btn mr-12">
             <a href="{% static 'path/to/your_resume.pdf' %}" download class="flex items-center justify-center h-10 w-10 rounded-full bg-gray-700 hover:bg-gray-600">
                 <i class="fas fa-download text-gray-300 dark:text-gray-400"></i>
             </a>
@@ -83,13 +89,13 @@
     </nav>
 
     <!-- Content Block -->
-    <div class="container mx-auto">
+    <div class="container mx-auto text-center px-4">
         {% block content %}
         {% endblock %}
     </div>
 
     <div class="text-center mb-4 text-gray-300 dark:text-gray-400">
-        <p>copyright &copy; prafulla parajuli </p>
+        <p>copyright &copy; prafulla parajuli</p>
     </div>
 
 </body>
